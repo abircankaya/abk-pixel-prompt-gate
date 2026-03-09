@@ -10,7 +10,7 @@ export function getDataDir(env = process.env, cwd = process.cwd()) {
     return path.join(cwd, ".codex-prompt-mcp");
   }
 
-  return path.join(os.homedir(), ".codex", "abk-pixel-prompt-gate");
+  return path.join(os.homedir(), ".codex", "abk-enhance");
 }
 
 export function getHttpConfig(env = process.env) {

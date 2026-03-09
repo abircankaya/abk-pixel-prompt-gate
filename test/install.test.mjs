@@ -16,7 +16,7 @@ test("managed AGENTS block is appended without removing existing content", () =>
   const result = upsertManagedAgentsBlock(existing);
 
   assert.match(result, /# Repo Rules/);
-  assert.match(result, /## ABK Pixel Prompt Gate Workflow/);
+  assert.match(result, /## ABK Enhance Workflow/);
 });
 
 test("managed AGENTS block is replaced in place", () => {
@@ -37,5 +37,5 @@ test("managed AGENTS block is replaced in place", () => {
 });
 
 test("default package ref is pinned to the current release tag", () => {
-  assert.match(DEFAULT_PACKAGE_REF, /^github:abircankaya\/abk-pixel-prompt-gate#v\d+\.\d+\.\d+$/);
+  assert.match(DEFAULT_PACKAGE_REF, /^github:abircankaya\/abk-enhance#v\d+\.\d+\.\d+$/);
 });

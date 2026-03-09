@@ -1,6 +1,6 @@
-# ABK Pixel Prompt Gate
+# ABK Enhance
 
-`ABK Pixel Prompt Gate`, ham teknik istekleri daha net bir Codex prompt'una ceviren ve kullanici onayi olmadan uygulamaya gecilmesini engelleyen bir MCP katmanidir.
+`ABK Enhance`, ham teknik istekleri daha net bir Codex prompt'una ceviren ve kullanici onayi olmadan uygulamaya gecilmesini engelleyen bir MCP katmanidir.
 
 Bu repo uc kullanim sekli sunar:
 
@@ -17,7 +17,7 @@ Tipik problem su:
 - kapsam kayar
 - sonuc dogru olsa bile beklenen is cikmayabilir
 
-`ABK Pixel Prompt Gate` bu akisi disipline eder:
+`ABK Enhance` bu akisi disipline eder:
 
 1. Kullanici ham problemi yazar.
 2. Sistem hizli bir prompt taslagi uretir.
@@ -77,12 +77,12 @@ npm install
 En pratik kurulum su:
 
 ```bash
-npx -y github:abircankaya/abk-pixel-prompt-gate#v0.3.1 install
+npx -y github:abircankaya/abk-enhance#v0.4.0 install
 ```
 
 Bu komut sunlari yapar:
 
-- Codex'e `abk-pixel-prompt-gate` MCP kaydini ekler veya gunceller
+- Codex'e `abk-enhance` MCP kaydini ekler veya gunceller
 - mevcut repo icinde `AGENTS.md` dosyasina yonetilen bir prompt gate blogu ekler
 - veri dizinini `.codex-prompt-mcp` olarak hazirlar
 
@@ -95,7 +95,7 @@ Kurulumdan sonra:
 
 Not:
 
-- Paket npm'e yayinlandiginda ayni akis `npx abk-pixel-prompt-gate install` olarak da kullanilabilir.
+- Paket npm'e yayinlandiginda ayni akis `npx abk-enhance install` olarak da kullanilabilir.
 
 ## NPM yayini
 
@@ -115,7 +115,7 @@ npm publish
 Yayin sonrasi kurulum komutu:
 
 ```bash
-npx abk-pixel-prompt-gate install
+npx abk-enhance install
 ```
 
 ## Hizli baslangic
@@ -131,7 +131,7 @@ Ornek konfigurasyon: [mcp-config.example.json](mcp-config.example.json)
 ### 2. Codex'e ekle
 
 ```bash
-codex mcp add abk-pixel-prompt-gate --env PROMPT_GATE_DATA_DIR=/Users/ahmet/Projects/codex-learn/.codex-prompt-mcp -- node /Users/ahmet/Projects/codex-learn/src/index.mjs
+codex mcp add abk-enhance --env PROMPT_GATE_DATA_DIR=/Users/ahmet/Projects/codex-learn/.codex-prompt-mcp -- node /Users/ahmet/Projects/codex-learn/src/index.mjs
 ```
 
 Kontrol:

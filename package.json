@@ -1,20 +1,20 @@
 {
-  "name": "abk-pixel-prompt-gate",
-  "version": "0.3.1",
+  "name": "abk-enhance",
+  "version": "0.4.0",
   "private": false,
   "type": "module",
   "bin": {
-    "abk-pixel-prompt-gate": "./src/cli.mjs"
+    "abk-enhance": "./src/cli.mjs"
   },
   "description": "MCP server that turns raw problem statements into structured Codex prompts and supports an approval flow.",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/abircankaya/abk-pixel-prompt-gate.git"
+    "url": "git+https://github.com/abircankaya/abk-enhance.git"
   },
-  "homepage": "https://github.com/abircankaya/abk-pixel-prompt-gate#readme",
+  "homepage": "https://github.com/abircankaya/abk-enhance#readme",
   "bugs": {
-    "url": "https://github.com/abircankaya/abk-pixel-prompt-gate/issues"
+    "url": "https://github.com/abircankaya/abk-enhance/issues"
   },
   "keywords": [
     "codex",

@@ -184,7 +184,7 @@ if (import.meta.url === `file://${process.argv[1]}`) {
   const { host, port } = getHttpConfig();
   startHttpServer({ host, port })
     .then(() => {
-      console.log(`ABK Pixel Prompt Gate HTTP server listening on http://${host}:${port}`);
+      console.log(`ABK Enhance HTTP server listening on http://${host}:${port}`);
     })
     .catch((error) => {
       console.error(error);

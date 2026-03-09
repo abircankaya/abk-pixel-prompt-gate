@@ -50,8 +50,8 @@ function renderPreview(preview) {
 
 export function createPromptGateServer({ service }) {
   const server = new McpServer({
-    name: "abk-pixel-prompt-gate",
-    version: "0.3.1"
+    name: "abk-enhance",
+    version: "0.4.0"
   });
 
   server.registerTool(
@@ -287,7 +287,7 @@ export function createPromptGateServer({ service }) {
 
   server.registerResource(
     "workflow-guide",
-    "abk-pixel-prompt-gate://guides/workflow",
+    "abk-enhance://guides/workflow",
     {
       mimeType: "text/plain",
       description: "Workflow guide for the draft -> revise -> approve -> execute loop."
@@ -295,7 +295,7 @@ export function createPromptGateServer({ service }) {
     async () => ({
       contents: [
         {
-          uri: "abk-pixel-prompt-gate://guides/workflow",
+          uri: "abk-enhance://guides/workflow",
           text: [
             "1. preview_codex_prompt",
             "2. Kullanici duzeltir veya aynen kabul eder",
@@ -309,7 +309,7 @@ export function createPromptGateServer({ service }) {
 
   server.registerResource(
     "agent-rule",
-    "abk-pixel-prompt-gate://guides/agent-rule",
+    "abk-enhance://guides/agent-rule",
     {
       mimeType: "text/plain",
       description: "Recommended agent rule text for enforcing the gated workflow."
@@ -317,7 +317,7 @@ export function createPromptGateServer({ service }) {
     async () => ({
       contents: [
         {
-          uri: "abk-pixel-prompt-gate://guides/agent-rule",
+          uri: "abk-enhance://guides/agent-rule",
           text: [
             "Kullanici bir sorun anlattiginda once promptu iyilestir.",
             "Kullanici onay vermeden uygulamaya gecme.",

@@ -4,15 +4,15 @@ import path from "node:path";
 import packageJson from "../package.json" with { type: "json" };
 import { getDataDir } from "./config.mjs";
 
-export const DEFAULT_SERVER_NAME = "abk-pixel-prompt-gate";
-export const DEFAULT_PACKAGE_REF = `github:abircankaya/abk-pixel-prompt-gate#v${packageJson.version}`;
-export const MANAGED_BLOCK_START = "<!-- abk-pixel-prompt-gate:start -->";
-export const MANAGED_BLOCK_END = "<!-- abk-pixel-prompt-gate:end -->";
+export const DEFAULT_SERVER_NAME = "abk-enhance";
+export const DEFAULT_PACKAGE_REF = `github:abircankaya/abk-enhance#v${packageJson.version}`;
+export const MANAGED_BLOCK_START = "<!-- abk-enhance:start -->";
+export const MANAGED_BLOCK_END = "<!-- abk-enhance:end -->";
 
 function buildManagedBlock(serverName = DEFAULT_SERVER_NAME) {
   return [
     MANAGED_BLOCK_START,
-    "## ABK Pixel Prompt Gate Workflow",
+    "## ABK Enhance Workflow",
     "",
     "Bu repo icinde teknik bir gorev, bug, review, refactor veya implementasyon talebi geldiginde varsayilan davranis su olmalidir:",
     "",

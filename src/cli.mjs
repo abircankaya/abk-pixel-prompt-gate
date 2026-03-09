@@ -159,7 +159,7 @@ async function main() {
       const host = flags.host ? String(flags.host) : undefined;
       const port = flags.port ? Number(flags.port) : undefined;
       await startHttpServer({ host, port, service });
-      console.log(`ABK Pixel Prompt Gate UI hazir: http://${host || "127.0.0.1"}:${port || 3334}`);
+      console.log(`ABK Enhance UI hazir: http://${host || "127.0.0.1"}:${port || 3334}`);
       return;
     }
 

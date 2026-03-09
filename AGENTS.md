@@ -1,9 +1,9 @@
-# ABK Pixel Prompt Gate Workflow
+# ABK Enhance Workflow
 
 Bu repoda teknik bir gorev, bug, review, refactor veya implementasyon talebi geldiginde varsayilan davranis su olmalidir:
 
 1. Kullanici girdisini dogrudan uygulamaya gecme.
-2. Once `abk-pixel-prompt-gate` MCP sunucusundaki `preview_codex_prompt` aracini cagir.
+2. Once `abk-enhance` MCP sunucusundaki `preview_codex_prompt` aracini cagir.
 3. Uretilen prompt taslagini minimum metinle kullaniciya goster.
 4. Kullanici onay vermeden veya promptu duzeltmeden esas isi yapma.
 5. Kullanici promptu degistirirse duzeltilmis promptu esas al.

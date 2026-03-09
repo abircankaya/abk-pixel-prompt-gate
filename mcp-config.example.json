@@ -1,6 +1,6 @@
 {
   "mcpServers": {
-    "abk-pixel-prompt-gate": {
+    "abk-enhance": {
       "command": "node",
       "args": [
         "/Users/ahmet/Projects/codex-learn/src/index.mjs"
