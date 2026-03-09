@@ -1,56 +1,51 @@
 # ABK Pixel Prompt Gate
 
-`ABK Pixel Prompt Gate`, ham bir teknik gorevi once daha iyi bir Codex prompt'una ceviren, sonra bu prompt'u onay akisindan geciren bir MCP urunudur.
+`ABK Pixel Prompt Gate`, ham teknik istekleri daha net bir Codex prompt'una ceviren ve kullanici onayi olmadan uygulamaya gecilmesini engelleyen bir MCP katmanidir.
 
-Bu repo artik uc farkli kullanim bicimi sunuyor:
+Bu repo uc kullanim sekli sunar:
 
-- `stdio MCP` entegrasyonu
+- `stdio MCP`
 - `HTTP MCP + REST API`
-- tarayici uzerinden kullanilabilen yerel `web arayuzu`
+- yerel `web arayuzu`
 
-## Problem
+## Ne ise yarar?
 
-Ekiplerde en sik gorulen sorun su:
+Tipik problem su:
 
-- kullanici problemi eksik veya daginik anlatiyor,
-- agent dogrudan uygulamaya geciyor,
-- scope kayiyor,
-- sonradan "aslinda bunu istememistim" durumu cikiyor.
+- kullanici problemi eksik veya daginik anlatir
+- agent dogrudan uygulamaya gecer
+- kapsam kayar
+- sonuc dogru olsa bile beklenen is cikmayabilir
 
-Bu urun, o bosluga giriyor.
-
-Akis:
+`ABK Pixel Prompt Gate` bu akisi disipline eder:
 
 1. Kullanici ham problemi yazar.
-2. Sistem bunu hizli bir prompt taslagina cevirir.
-3. Kullanici prompt'u duzeltir veya aynen kabul eder.
+2. Sistem hizli bir prompt taslagi uretir.
+3. Kullanici prompt'u duzeltir veya onaylar.
 4. Prompt onayli kayda doner.
-5. Asil uygulama sadece onayli prompt uzerinden ilerler.
+5. Asil is sadece onayli prompt uzerinden ilerler.
 
 ## Onemli sinir
 
-Tek basina MCP sunucusu "kullanici onay vermeden agent asla ilerlemesin" kuralini zorlayamaz. Bunun icin iki katman gerekir:
+Bu sunucu tek basina "kullanici onay vermeden agent asla ilerlemesin" kuralini zorlayamaz. Bunun icin agent tarafinda da bir kural gerekir.
 
-- bu sunucu
-- istemci/agent tarafinda bu akisi zorlayan kural
+Bu repo icindeki ornekler:
 
-Onerilen agent talimati icin [docs/agent-instructions.md](/Users/ahmet/Projects/codex-learn/docs/agent-instructions.md) dosyasini kullanin.
+- [AGENTS.md](AGENTS.md)
+- [docs/agent-instructions.md](docs/agent-instructions.md)
 
 ## Ozellikler
 
 - ham problemi yapilandirilmis prompt taslagina cevirme
-- taslagi revize etme
-- onaylama / reddetme
+- revizyon, onay ve red akisi
 - prompt kalite skoru ve eksik baglam ipuclari
 - yerel dosya tabanli prompt depolama
-- MCP tool, prompt ve resource kaydi
+- MCP tool, prompt ve resource kayitlari
 - HTTP REST API
-- sade ama kullanisli web arayuzu
+- web arayuzu
 - CLI komutlari
 
-## Araclar
-
-MCP tarafinda su araclar kayitli:
+## MCP araclari
 
 - `preview_codex_prompt`
 - `draft_codex_prompt`
@@ -64,49 +59,46 @@ MCP tarafinda su araclar kayitli:
 
 Ek olarak:
 
-- `codex-gated-workflow` isimli bir MCP prompt'u
-- workflow ve agent kuralini tasiyan iki MCP resource'u
+- `codex-gated-workflow` isimli MCP prompt'u
+- workflow ve agent kuralini tasiyan MCP resource'lari
 
 ## Kurulum
-
-```bash
-npm install
-```
 
 Gereksinim:
 
 - Node.js 20+
 
+```bash
+npm install
+```
+
 ## Hizli baslangic
 
-### 1. Stdio MCP olarak calistir
+### 1. Stdio MCP
 
 ```bash
 npm start
 ```
 
-Bu mod, MCP istemcileri tarafindan process spawn edilmesi icindir.
+Ornek konfigurasyon: [mcp-config.example.json](mcp-config.example.json)
 
-Ornek konfigurasyon: [mcp-config.example.json](/Users/ahmet/Projects/codex-learn/mcp-config.example.json)
-
-### 1.a Codex'e dogrudan ekle
-
-`codex` CLI bu akisi dogrudan destekliyor. Sunucuyu Codex'e tanitmak icin:
+### 2. Codex'e ekle
 
 ```bash
 codex mcp add abk-pixel-prompt-gate --env PROMPT_GATE_DATA_DIR=/Users/ahmet/Projects/codex-learn/.codex-prompt-mcp -- node /Users/ahmet/Projects/codex-learn/src/index.mjs
 ```
 
-Kontrol etmek icin:
+Kontrol:
 
 ```bash
 codex mcp list
 ```
 
-Bu noktadan sonra Codex oturumlarinda `abk-pixel-prompt-gate` MCP sunucusu gorunur.
-`PROMPT_GATE_DATA_DIR` env'i, stdio MCP `cwd=/` gibi bir baglamda calistiginda yazma akisinin takilmamasi icin onerilir.
+Not:
 
-### 2. HTTP + web arayuzu ile calistir
+- `PROMPT_GATE_DATA_DIR`, stdio MCP `cwd=/` gibi bir baglamda acildiginda yazma akisinin takilmamasi icin onerilir.
+
+### 3. HTTP + web arayuzu
 
 ```bash
 npm run start:http
@@ -118,34 +110,21 @@ Varsayilan adres:
 http://127.0.0.1:3334
 ```
 
-### 3. CLI ile kullan
+### 4. CLI
 
 ```bash
 npm run cli -- draft --problem "Filtre degisince liste bosa dusuyor" --repo-area src/features/search --constraint "API kontratini degistirme"
 ```
 
-Ilk cevap gecikmesini azaltmak icin product akisi artik su sekilde onerilir:
+## Onerilen akış
+
+Ilk cevap gecikmesini azaltmak icin su akış onerilir:
 
 1. `preview_codex_prompt`
-2. kullanici onayi veya duzeltmesi
+2. kullanici duzeltmesi veya onayi
 3. `finalize_codex_prompt`
 
-## Web arayuzu
-
-Web arayuzu su ihtiyaclar icin var:
-
-- teknik olmayan veya yarim teknik kullanicilarin prompt hazirlamasi
-- ekip ici hizli deneme
-- prompt onay akisini gorunur hale getirme
-
-Arayuzde sunlar var:
-
-- yeni gorev formu
-- prompt editor
-- revizyon / onay / red butonlari
-- kalite skoru
-- eksik baglam ipuclari
-- son promptlar listesi
+Bu sayede ilk turda sadece hizli bir onizleme doner, kayit yazimi onay asamasinda yapilir.
 
 ## REST API
 
@@ -161,7 +140,7 @@ Temel endpointler:
 - `POST /api/prompts/:id/reject`
 - `POST /mcp`
 
-### Ornek draft istegi
+Ornek draft istegi:
 
 ```json
 {
@@ -180,8 +159,6 @@ Temel endpointler:
 ```
 
 ## CLI
-
-Desteklenen komutlar:
 
 ```bash
 npm run cli -- draft --problem "..."
@@ -207,17 +184,15 @@ Onaydan sonra sadece onayli prompt'u gorev kapsami olarak kullan.
 Yeni baglam gelirse prompt'u tekrar guncelle ve yeniden onay iste.
 ```
 
-Bu repo icinde ayni davranisi zorlamak icin [AGENTS.md](/Users/ahmet/Projects/codex-learn/AGENTS.md#L1) dosyasi eklendi.
-
 ## Veri depolama
 
-Kayitlar varsayilan olarak su klasorde tutulur:
+Varsayilan depolama dizini:
 
 ```text
 .codex-prompt-mcp/prompts.json
 ```
 
-Farkli klasor kullanmak isterseniz:
+Farkli klasor kullanmak icin:
 
 ```bash
 PROMPT_GATE_DATA_DIR=/some/path npm run start:http
@@ -230,30 +205,30 @@ PROMPT_GATE_HOST=127.0.0.1
 PROMPT_GATE_PORT=3334
 ```
 
-## Dosya yapisi
+## Proje yapisi
 
-- [src/index.mjs](/Users/ahmet/Projects/codex-learn/src/index.mjs): stdio MCP giris noktasi
-- [src/httpServer.mjs](/Users/ahmet/Projects/codex-learn/src/httpServer.mjs): HTTP MCP + REST + static UI
-- [src/mcpServer.mjs](/Users/ahmet/Projects/codex-learn/src/mcpServer.mjs): MCP tool/prompt/resource kayitlari
-- [src/promptService.mjs](/Users/ahmet/Projects/codex-learn/src/promptService.mjs): prompt yasam dongusu
-- [src/promptBuilder.mjs](/Users/ahmet/Projects/codex-learn/src/promptBuilder.mjs): prompt iyilestirme mantigi
-- [public/index.html](/Users/ahmet/Projects/codex-learn/public/index.html): web arayuzu
-- [docs/agent-instructions.md](/Users/ahmet/Projects/codex-learn/docs/agent-instructions.md): agent kurali
+- [src/index.mjs](src/index.mjs): stdio MCP giris noktasi
+- [src/httpServer.mjs](src/httpServer.mjs): HTTP MCP + REST + static UI
+- [src/mcpServer.mjs](src/mcpServer.mjs): MCP tool, prompt ve resource kayitlari
+- [src/promptService.mjs](src/promptService.mjs): prompt yasam dongusu
+- [src/promptBuilder.mjs](src/promptBuilder.mjs): prompt iyilestirme mantigi
+- [public/index.html](public/index.html): web arayuzu
+- [docs/agent-instructions.md](docs/agent-instructions.md): agent talimati
 
-## Test
+## Gelistirme
+
+Test:
 
 ```bash
 npm test
 ```
 
-Kapsam:
+Mevcut test kapsami:
 
 - prompt builder
 - prompt lifecycle servisi
 - HTTP health ve draft endpoint smoke testi
 
-## Teknik not
-
-HTTP tasariminda MCP TypeScript SDK'nin `Streamable HTTP` onerisine uyuldu. Resmi referans:
+Teknik referans:
 
 - [MCP TypeScript SDK README](https://github.com/modelcontextprotocol/typescript-sdk/blob/main/README.md)

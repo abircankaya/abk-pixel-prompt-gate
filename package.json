@@ -1,9 +1,25 @@
 {
   "name": "abk-pixel-prompt-gate",
   "version": "0.2.0",
-  "private": true,
+  "private": false,
   "type": "module",
   "description": "MCP server that turns raw problem statements into structured Codex prompts and supports an approval flow.",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/abircankaya/abk-pixel-prompt-gate.git"
+  },
+  "homepage": "https://github.com/abircankaya/abk-pixel-prompt-gate#readme",
+  "bugs": {
+    "url": "https://github.com/abircankaya/abk-pixel-prompt-gate/issues"
+  },
+  "keywords": [
+    "codex",
+    "mcp",
+    "prompt",
+    "agent",
+    "approval-workflow"
+  ],
   "scripts": {
     "start": "node src/index.mjs",
     "start:stdio": "node src/index.mjs",
