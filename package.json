@@ -1,0 +1,22 @@
+{
+  "name": "abk-pixel-prompt-gate",
+  "version": "0.2.0",
+  "private": true,
+  "type": "module",
+  "description": "MCP server that turns raw problem statements into structured Codex prompts and supports an approval flow.",
+  "scripts": {
+    "start": "node src/index.mjs",
+    "start:stdio": "node src/index.mjs",
+    "start:http": "node src/httpServer.mjs",
+    "cli": "node src/cli.mjs",
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  },
+  "dependencies": {
+    "@modelcontextprotocol/sdk": "^1.27.1",
+    "express": "^5.2.1",
+    "zod": "^4.1.5"
+  }
+}

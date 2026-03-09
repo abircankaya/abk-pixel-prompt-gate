@@ -1,0 +1,14 @@
+{
+  "mcpServers": {
+    "abk-pixel-prompt-gate": {
+      "command": "node",
+      "args": [
+        "/Users/ahmet/Projects/codex-learn/src/index.mjs"
+      ],
+      "cwd": "/Users/ahmet/Projects/codex-learn",
+      "env": {
+        "PROMPT_GATE_DATA_DIR": "/Users/ahmet/Projects/codex-learn/.codex-prompt-mcp"
+      }
+    }
+  }
+}

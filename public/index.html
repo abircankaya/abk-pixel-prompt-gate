@@ -1,0 +1,109 @@
+<!doctype html>
+<html lang="tr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>ABK Pixel Prompt Gate</title>
+    <link rel="stylesheet" href="/styles.css" />
+  </head>
+  <body>
+    <div class="shell">
+      <header class="hero">
+        <div>
+          <p class="eyebrow">Codex Workflow Gate</p>
+          <h1>Ham problemi once iyilestir, sonra onayla, sonra uygula.</h1>
+          <p class="lede">
+            Bu arayuz, teknik gorevleri Codex'in daha iyi anlayacagi promptlara cevirir.
+            Siz duzeltip onaylamadan prompt final hale gelmez.
+          </p>
+        </div>
+        <div class="stats" id="stats"></div>
+      </header>
+
+      <main class="grid">
+        <section class="panel form-panel">
+          <div class="panel-head">
+            <h2>Yeni Gorev</h2>
+            <p>Ham problemi yazin, sistem taslak prompt olustursun.</p>
+          </div>
+
+          <form id="draft-form">
+            <label>
+              <span>Problem</span>
+              <textarea id="problem" required placeholder="Ornek: Filtre degisince liste bosa dusuyor."></textarea>
+            </label>
+
+            <label>
+              <span>Baglam</span>
+              <textarea id="context" placeholder="Semptomlar, beklenen davranis, teknik detaylar"></textarea>
+            </label>
+
+            <label>
+              <span>Ilgili alan</span>
+              <input id="repoArea" type="text" placeholder="Ornek: src/features/search" />
+            </label>
+
+            <label>
+              <span>Sinirlar</span>
+              <textarea id="constraints" placeholder="Her satira bir sinir yazin"></textarea>
+            </label>
+
+            <label>
+              <span>Dogrulama</span>
+              <input id="validation" type="text" placeholder="Ornek: Ilgili testleri calistir" />
+            </label>
+
+            <label>
+              <span>Cikti formati</span>
+              <input id="outputFormat" type="text" placeholder="Ornek: Kisa ozet + riskler" />
+            </label>
+
+            <label class="checkbox">
+              <input id="askForPlan" type="checkbox" checked />
+              <span>Oncesinde kisa plan istensin</span>
+            </label>
+
+            <button class="primary" type="submit">Taslak prompt olustur</button>
+          </form>
+        </section>
+
+        <section class="panel preview-panel">
+          <div class="panel-head">
+            <h2>Prompt Editor</h2>
+            <p id="status-line">Henuz bir prompt secilmedi.</p>
+          </div>
+
+          <div class="meta" id="meta"></div>
+          <textarea id="promptEditor" placeholder="Taslak prompt burada gorunecek."></textarea>
+
+          <label>
+            <span>Revizyon notu / red nedeni</span>
+            <input id="note" type="text" placeholder="Ornek: Repo klasorunu ekledim" />
+          </label>
+
+          <div class="actions">
+            <button class="secondary" id="reviseBtn" type="button">Revizyonu kaydet</button>
+            <button class="primary" id="approveBtn" type="button">Onayla</button>
+            <button class="ghost" id="rejectBtn" type="button">Reddet</button>
+          </div>
+
+          <div class="hints">
+            <h3>Baglam ipuclari</h3>
+            <ul id="hints"></ul>
+          </div>
+        </section>
+
+        <section class="panel history-panel">
+          <div class="panel-head">
+            <h2>Son Promptlar</h2>
+            <p>Kayitli taslaklar ve onayli promptlar.</p>
+          </div>
+
+          <div class="list" id="promptList"></div>
+        </section>
+      </main>
+    </div>
+
+    <script type="module" src="/app.js"></script>
+  </body>
+</html>
